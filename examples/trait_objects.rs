@@ -9,7 +9,7 @@ fn main() {
         }),
     ];
     for entity in entities {
-        entity.eat(Food::Apple);
+        entity.eat(Food::Apple); // Can access `entity` directly beacause Box implements Deref
         entity.eat(Food::Banana);
     }
 }

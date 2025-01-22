@@ -1,6 +1,4 @@
-// miri
-// godbolt
-
+// buf write + flush
 fn main() {
     todo!();
 }
