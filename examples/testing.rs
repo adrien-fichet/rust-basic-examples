@@ -1,4 +1,4 @@
-// Usage: cargo test --example testing
+// Usage: cargo test --example testing -- --test-threads=5
 
 // property-based testing
 // fuzzing
@@ -7,6 +7,7 @@
 // profiling
 // coverage
 // fixtures
+// async tests
 
 use rstest::{fixture, rstest};
 
