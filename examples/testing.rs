@@ -3,7 +3,7 @@
 // property-based testing
 // fuzzing
 // mocking
-// benchmarks
+// benchmarks: timeit, criterion
 // profiling
 // coverage
 // fixtures
@@ -25,16 +25,13 @@ mod tests {
     }
 
     #[fixture]
-    fn users() -> Vec<String> {
-        ["Alice", "Bob", "Carol"]
-            .iter()
-            .map(|s| s.to_string())
-            .collect()
+    fn users() -> [&'static str; 4] {
+        ["Alice", "Bob", "Carol", "Dave"]
     }
 
     #[rstest]
-    fn test_number_of_users(users: Vec<String>) {
-        assert_eq!(users.len(), 3);
+    fn test_number_of_users(users: [&'static str; 4]) {
+        assert_eq!(users.len(), 4);
     }
 }
 
