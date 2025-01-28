@@ -13,5 +13,5 @@ fn main() -> Result<(), ureq::Error> {
     );
 
     todo!("Request containing cookies + Bearer token over HTTPS");
-    Ok(())
+    //Ok(())
 }

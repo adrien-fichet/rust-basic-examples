@@ -6,7 +6,6 @@ use std::{io::BufReader, path::PathBuf};
 #[derive(Parser)]
 struct Cli {
     // todo: sub-commands
-
     /// The pattern to look for.
     pattern: String,
     /// The path to the file to read.

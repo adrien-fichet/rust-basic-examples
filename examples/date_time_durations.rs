@@ -3,13 +3,13 @@ use std::time::Duration;
 use std::time::Instant;
 
 fn main() {
-    elasped_time();
-    todo!("date formatting");
-    todo!("date substraction");
-    todo!("timestamp");
+    elapsed_time();
+    //todo!("date formatting");
+    //todo!("date substraction");
+    //todo!("timestamp");
 }
 
-fn elasped_time() {
+fn elapsed_time() {
     println!("Start");
     let now = Instant::now();
 

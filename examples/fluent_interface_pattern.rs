@@ -1,9 +1,23 @@
+use std::fmt::Display;
+
 #[derive(Default, Debug)]
 enum Color {
     #[default]
     Black,
     White,
-    Brown,
+}
+
+impl Display for Color {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(
+            f,
+            "{}",
+            match self {
+                Color::Black => "Black",
+                Color::White => "White",
+            }
+        )
+    }
 }
 
 #[derive(Default, Debug)]
@@ -13,6 +27,16 @@ struct Cat {
     main_color: Color,
     secondary_color: Color,
     is_lazy: bool,
+}
+
+impl Display for Cat {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(
+            f,
+            "--- Cat infos ---\nName: {}\nAge: {}\nMain Color: {}\nSecondary Color: {}\nLazy: {}",
+            self.name, self.age, self.main_color, self.secondary_color, self.is_lazy
+        )
+    }
 }
 
 impl Cat {
@@ -45,5 +69,5 @@ fn main() {
         .with_main_color(Color::White)
         .with_secondary_color(Color::Black)
         .lazy(false);
-    println!("{:?}", cat);
+    println!("{}", cat);
 }

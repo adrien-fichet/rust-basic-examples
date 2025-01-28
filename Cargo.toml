@@ -7,7 +7,7 @@ edition = "2021"
 ansi_term = "0.12.1"
 clap = { version = "4.5.27", features = ["derive"] }
 exitcode = "1.1.2"
-iced = "0.13.1"
+iced = { version = "0.13.1", features = ["async-std"] }
 indicatif = "0.17.9"
 itertools = "0.14.0"
 plotters = "0.3.7"

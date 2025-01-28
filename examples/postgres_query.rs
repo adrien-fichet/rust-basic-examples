@@ -64,6 +64,5 @@ async fn main() -> Result<(), Error> {
     println!("First cat name is {}", cat_name);
 
     todo!("Connection over TLS");
-
-    Ok(())
+    //Ok(())
 }
