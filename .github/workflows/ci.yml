@@ -32,7 +32,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions-rust-lang/setup-rust-toolchain@v1
-      - run: cargo update -n -v
+      - run: cargo update -n -v | tee output.txt
+      - run: ! grep -q "available" output.txt
 
   check:
     runs-on: ubuntu-latest
