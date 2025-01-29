@@ -20,7 +20,7 @@ use tokio_postgres::{Error, NoTls};
 #[tokio::main]
 async fn main() -> Result<(), Error> {
     let (client, connection) = tokio_postgres::connect(
-        &*format!(
+        &format!(
             "host=localhost user=postgres password={} dbname=demo",
             env::var("POSTGRES_PASSWORD").expect("POSTGRES_PASSWORD must be set")
         ),

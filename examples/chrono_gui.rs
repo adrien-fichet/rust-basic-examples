@@ -95,14 +95,12 @@ fn view(state: &State) -> Element<Message> {
     }
 
     let mut resume_button = button("Resume");
-    if let Some(_) = state.started_at {
-        if state.paused {
-            resume_button = resume_button.on_press(Message::Resume);
-        }
+    if state.started_at.is_some() && state.paused {
+        resume_button = resume_button.on_press(Message::Resume);
     }
 
     let mut reset_button = button("Reset");
-    if let Some(_) = state.started_at {
+    if state.started_at.is_some() {
         reset_button = reset_button.on_press(Message::Reset);
     }
 
