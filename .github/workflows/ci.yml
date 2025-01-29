@@ -35,9 +35,7 @@ jobs:
       - run: >-
           available_updates=$(cargo update -n -v 2>&1 | grep available);
           echo "$available_updates";
-          if [[ "$available_updates" != "" ]]; then
-             $(exit 1);
-          fi
+          if [[ "$available_updates" != "" ]]; then $(exit 1); fi
 
   check:
     runs-on: ubuntu-latest
