@@ -1,20 +1,16 @@
 name: CI
-on:
-  push:
+on: [push]
 jobs:
   formatting:
-    name: cargo fmt
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions-rust-lang/setup-rust-toolchain@v1
         with:
           components: rustfmt
-      - name: Rustfmt Check
-        uses: actions-rust-lang/rustfmt@v1
+      - uses: actions-rust-lang/rustfmt@v1
 
   clippy:
-    name: cargo clippy
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -24,7 +20,6 @@ jobs:
       - run: cargo clippy
 
   audit:
-    name: cargo audit
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -32,16 +27,18 @@ jobs:
       - run: cargo install cargo-audit
       - run: cargo audit
 
-  update-check:
-    name: Check for crates updates
+  check-updates:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions-rust-lang/setup-rust-toolchain@v1
-      - run: cargo update -n -v 2>&1 | grep -n available
+      - run: >-
+          available_updates=$(cargo update -n -v 2>&1 | grep available);
+          if [[ "$available_updates" != "" ]]; then
+            echo "$available_updates"; $(exit 1);
+          fi
 
   check:
-    name: cargo check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -49,7 +46,6 @@ jobs:
       - run: cargo check
 
   build:
-    name: cargo build
     needs: check
     runs-on: ubuntu-latest
     strategy:
@@ -64,7 +60,6 @@ jobs:
       - run: cargo build --release
 
   test:
-    name: cargo test
     needs: build
     runs-on: ubuntu-latest
     steps:
