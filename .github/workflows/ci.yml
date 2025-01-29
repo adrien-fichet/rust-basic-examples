@@ -17,6 +17,7 @@ jobs:
       - uses: actions-rust-lang/setup-rust-toolchain@v1
         with:
           components: clippy
+      - run: sudo apt install -y libfontconfig1-dev
       - run: cargo clippy -v --all-targets
 
   audit:
