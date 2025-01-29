@@ -2,9 +2,9 @@ use serde_json::json;
 
 fn main() -> Result<(), ureq::Error> {
     let request = ureq::get("https://httpbin.org/get?foo=bar&baz=qux")
-        .set("Content-Type", "application/json");
+        .header("Content-Type", "application/json");
 
-    let response: serde_json::Value = request.call()?.into_json()?;
+    let response: serde_json::Value = request.call()?.body_mut().read_json()?;
     println!("{:#?}", &response);
 
     assert_eq!(

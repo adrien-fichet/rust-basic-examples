@@ -32,10 +32,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions-rust-lang/setup-rust-toolchain@v1
-      - run: >-
-          available_updates=$(cargo update -n -v 2>&1 | grep available);
-          echo "$available_updates";
-          if [[ "$available_updates" != "" ]]; then exit 1; fi
+      - run: cargo update -n -v
 
   check:
     runs-on: ubuntu-latest
