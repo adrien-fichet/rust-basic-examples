@@ -2,15 +2,6 @@ name: CI
 on:
   push:
 jobs:
-  test:
-    name: cargo test
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions-rust-lang/setup-rust-toolchain@v1
-      - run: sudo apt install -y libfontconfig1-dev
-      - run: cargo test --all-features
-
   formatting:
     name: cargo fmt
     runs-on: ubuntu-latest
@@ -22,4 +13,61 @@ jobs:
       - name: Rustfmt Check
         uses: actions-rust-lang/rustfmt@v1
 
-# todo: clippy, rustdoc, cargo-audit
+  clippy:
+    name: cargo clippy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions-rust-lang/setup-rust-toolchain@v1
+        with:
+          components: clippy
+      - run: cargo clippy
+
+  audit:
+    name: cargo audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions-rust-lang/setup-rust-toolchain@v1
+      - run: cargo audit
+
+  update-check:
+    name: Check for crates updates
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions-rust-lang/setup-rust-toolchain@v1
+      - run: cargo update -n -v 2>&1 | grep -n available
+
+  check:
+    name: cargo check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions-rust-lang/setup-rust-toolchain@v1
+      - run: cargo check
+
+  build:
+    name: cargo build
+    needs: check
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        toolchain: [stable, beta, nightly]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions-rust-lang/setup-rust-toolchain@v1
+        with:
+          toolchain: ${{ matrix.toolchain }}
+      - run: cargo build --debug
+      - run: cargo build --release
+
+  test:
+    name: cargo test
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions-rust-lang/setup-rust-toolchain@v1
+      - run: sudo apt install -y libfontconfig1-dev
+      - run: cargo test --all-features
