@@ -1,9 +1,12 @@
 use plotters::prelude::*;
-use rand::{thread_rng, Rng};
+use rand::prelude::*;
 use std::process::Command;
+use std::fs::OpenOptions;
 
 fn main() {
     let image_path = "/tmp/area-chart.png";
+    OpenOptions::new().create(true).write(true).open(image_path).expect("Error creating image file");
+
     let root_area = BitMapBackend::new(image_path, (600, 400)).into_drawing_area();
     root_area.fill(&WHITE).unwrap();
 
@@ -16,8 +19,8 @@ fn main() {
 
     ctx.configure_mesh().draw().unwrap();
 
-    let mut rng = thread_rng();
-    let data: Vec<_> = (0..11).into_iter().map(|_| rng.gen_range(0..50)).collect();
+    let mut rng = rand::rng();
+    let data: Vec<_> = (0..11).into_iter().map(|_| rng.random_range(0..50)).collect();
 
     ctx.draw_series(
         AreaSeries::new((0..).zip(data.iter().map(|x| *x)), 0, &RED.mix(0.2)).border_style(&RED),
