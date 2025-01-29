@@ -5,7 +5,7 @@
 // mocking
 // benchmarks: timeit, criterion
 // profiling
-// coverage
+// coverage (cargo-tarpaulin?)
 // fixtures
 // async tests
 
