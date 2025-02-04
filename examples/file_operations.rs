@@ -1,7 +1,7 @@
 // append to file
 // create tempdir
 
-use std::io::{Read, Seek, SeekFrom, Write, BufReader};
+use std::io::{BufReader, Read, Seek, SeekFrom, Write};
 
 fn write_and_read_tempfile() {
     let mut tmp_file = tempfile::tempfile().expect("Could not create temp file");
