@@ -13,7 +13,8 @@ enum Database {
     PostgreSQL(PostgreSQL),
 }
 
-impl Database { // boilerplate...
+impl Database {
+    // boilerplate...
     fn connect(&self) {
         match self {
             Database::MySQL(db) => db.connect(),
