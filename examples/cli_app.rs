@@ -1,35 +1,48 @@
-use clap::Parser;
+use clap::{Parser, Subcommand};
 use std::io::prelude::*;
 use std::{io::BufReader, path::PathBuf};
 
-/// Search for a pattern in a file and display lines that contain it.
 #[derive(Parser)]
 struct Cli {
-    // todo: sub-commands
-    /// The pattern to look for.
-    pattern: String,
-    /// The path to the file to read.
-    path: PathBuf,
+    #[command(subcommand)]
+    command: Commands,
+}
+
+#[derive(Subcommand)]
+enum Commands {
+    /// Search for a pattern in a file and display lines that contain it.
+    Grep {
+        /// The pattern to look for
+        pattern: String,
+        /// The path to the file
+        path: PathBuf,
+    },
 }
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let args = Cli::parse();
+    let cli = Cli::parse();
 
-    let file = std::fs::File::open(&args.path).expect("Could not open file"); // todo: return an exitcode here instead of panicking
+    let status = match &cli.command {
+        Commands::Grep { pattern, path } => grep(pattern, path),
+    };
+    std::process::exit(status);
+}
+
+fn grep(pattern: &String, path: &PathBuf) -> exitcode::ExitCode {
+    let file = std::fs::File::open(path).expect("Could not open file"); // todo: return an exitcode here instead of panicking
     let reader = BufReader::new(file);
 
     let mut at_least_one_result = false;
     for (line_number, line) in reader.lines().enumerate() {
         let line = line.expect("Could not read line"); // todo: same as above
-        if line.contains(&args.pattern) {
+        if line.contains(pattern) {
             println!("[line {}]: {}", line_number, line.trim());
             at_least_one_result = true;
         }
     }
 
-    let status = match at_least_one_result {
+    match at_least_one_result {
         true => exitcode::OK,
         false => 1,
-    };
-    std::process::exit(status);
+    }
 }
