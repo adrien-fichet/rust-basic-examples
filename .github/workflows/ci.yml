@@ -34,7 +34,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions-rust-lang/setup-rust-toolchain@v1
       - run: cargo update -n -v 2>&1 | tee output.txt
-      - run: if [[ $(grep "available" output.txt) != "" ]]; then echo -e "::warning\n\`\`\`\n$(cat output.txt)\n\`\`\`"; fi
+      - run: if [[ $(grep "available" output.txt) != "" ]]; then echo -e "::warning::\n\`\`\`\n$(cat output.txt)\n\`\`\`"; fi
 
   check:
     runs-on: ubuntu-latest
