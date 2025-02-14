@@ -1,10 +1,13 @@
 // append to file
 // create tempdir
 
-use std::io::{BufReader, Read, Seek, SeekFrom, Write};
+use std::io::prelude::*;
+use std::io::{BufReader, Seek, SeekFrom, Write};
 
-fn write_and_read_tempfile() {
+fn write_and_read_tempfile() -> Result<(), Box<dyn std::error::Error>> {
     let mut tmp_file = tempfile::tempfile().expect("Could not create temp file");
+    println!("{:?}", tmp_file);
+
     ["Hello, world!", "Line number 2"]
         .iter()
         .for_each(|line| writeln!(tmp_file, "{}", line).expect("Could not write to temp file"));
@@ -13,17 +16,14 @@ fn write_and_read_tempfile() {
         .seek(SeekFrom::Start(0))
         .expect("Could not seek temp file");
 
-    let mut buf_reader = BufReader::new(tmp_file);
-    let mut contents = String::new();
-    buf_reader
-        .read_to_string(&mut contents)
-        .expect("Could not read temp file");
-
-    assert_eq!(contents, "Hello, world!\nLine number 2\n".to_string());
+    let buf_reader = BufReader::new(tmp_file);
+    let mut lines_iter = buf_reader.lines();
+    assert_eq!(lines_iter.next().unwrap()?, "Hello, world!".to_string());
+    assert_eq!(lines_iter.next().unwrap()?, "Line number 2".to_string());
+    Ok(())
 }
 
-fn main() {
-    write_and_read_tempfile();
-
-    todo!();
+fn main() -> Result<(), Box<dyn std::error::Error>> {
+    write_and_read_tempfile()?;
+    Ok(())
 }

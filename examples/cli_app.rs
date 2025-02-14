@@ -36,7 +36,7 @@ fn grep(pattern: &String, path: &PathBuf) -> exitcode::ExitCode {
     for (line_number, line) in reader.lines().enumerate() {
         let line = line.expect("Could not read line"); // todo: same as above
         if line.contains(pattern) {
-            println!("[line {}]: {}", line_number, line.trim());
+            println!("[line {}]: {}", line_number + 1, line.trim());
             at_least_one_result = true;
         }
     }
