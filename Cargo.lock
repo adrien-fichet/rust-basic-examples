@@ -3802,6 +3802,7 @@ version = "0.1.0"
 dependencies = [
  "ansi_term",
  "axum",
+ "base64",
  "clap",
  "exitcode",
  "iced",
