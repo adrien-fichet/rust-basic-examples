@@ -5,8 +5,9 @@ use std::time::Instant;
 fn main() {
     elapsed_time();
     //todo!("date formatting");
-    //todo!("date substraction");
+    //todo!("date subtraction");
     //todo!("timestamp");
+    //todo!("timezones");
 }
 
 fn elapsed_time() {
