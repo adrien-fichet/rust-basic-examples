@@ -2,12 +2,13 @@
 
 // property-based testing
 // fuzzing
-// mocking
+// fake, mock, seam
 // benchmarks: timeit, criterion
 // profiling
 // coverage (cargo-tarpaulin?)
 // fixtures
 // async tests
+// setup/teardown
 
 #[allow(unused_imports)]
 use rstest::{fixture, rstest};

@@ -1,6 +1,7 @@
 name: CI
 on: [push]
 jobs:
+# todo: checkout + install --> cache and reuse
   formatting:
     runs-on: ubuntu-latest
     steps:
