@@ -17,7 +17,11 @@ fn main() {
     print_args!();
     print_args!(1);
     print_args!(1, 2, 3);
-    print_args!(Cat { name: "Riki".to_string() }); // won't compile if Cat does not implement Display
+
+    let cat = Cat {
+        name: "Riki".to_string(),
+    };
+    print_args!(cat); // won't compile if Cat does not implement Display
 }
 
 struct Cat {
