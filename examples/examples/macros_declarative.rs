@@ -1,7 +1,3 @@
-// Macros from std lib: https://doc.rust-lang.org/std/#macros
-// cargo expand
-// custom macro definition
-// declarative (macro_rules!), procedural (derive, attribute-like, function-like)
 // https://doc.rust-lang.org/reference/macros.html
 
 #[macro_export]
