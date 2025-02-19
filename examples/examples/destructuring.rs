@@ -7,7 +7,10 @@ fn main() {
     let Cat { name, age } = cat.clone(); // same variable names as the struct fields
     println!("{} is {} years old", name, age);
 
-    let Cat { name: cat_name, age: cat_age } = cat; // new variable names
+    let Cat {
+        name: cat_name,
+        age: cat_age,
+    } = cat; // new variable names
     println!("{} is {} years old", cat_name, cat_age);
 }
 

@@ -2,5 +2,5 @@
 // `cargo expand` usage
 
 fn main() {
-  todo!();
+    todo!();
 }
