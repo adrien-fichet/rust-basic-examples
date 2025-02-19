@@ -1,0 +1,10 @@
+[package]
+name = "cli"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+ansi_term = "0.12.1"
+clap = { version = "4.5.27", features = ["derive"] }
+exitcode = "1.1.2"
+indicatif = "0.17.9"

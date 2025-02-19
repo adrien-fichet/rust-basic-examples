@@ -493,6 +493,23 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "72b3254f16251a8381aa12e40e3c4d2f0199f8c6508fbecb9d91f575e0fbb8c6"
 
 [[package]]
+name = "basic"
+version = "0.1.0"
+dependencies = [
+ "base64",
+ "iced",
+ "itertools",
+ "plotters",
+ "rand 0.9.0",
+ "rstest",
+ "rust_decimal",
+ "rust_decimal_macros",
+ "tempfile",
+ "tokio",
+ "tokio-postgres",
+]
+
+[[package]]
 name = "bit-set"
 version = "0.5.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -771,6 +788,16 @@ name = "clap_lex"
 version = "0.7.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f46ad14479a25103f283c0f10005961cf086d8dc42205bb44c46ac563475dca6"
+
+[[package]]
+name = "cli"
+version = "0.1.0"
+dependencies = [
+ "ansi_term",
+ "clap",
+ "exitcode",
+ "indicatif",
+]
 
 [[package]]
 name = "clipboard-win"
@@ -1189,6 +1216,10 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "21d8ad60dd5b13a4ee6bd8fa2d5d88965c597c67bce32b5fc49c94f55cb50810"
 
 [[package]]
+name = "di"
+version = "0.1.0"
+
+[[package]]
 name = "digest"
 version = "0.10.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1449,33 +1480,6 @@ checksum = "3c3e4e0dd3673c1139bf041f3008816d9cf2946bbfac2945c09e523b8d7b05b2"
 dependencies = [
  "event-listener 5.4.0",
  "pin-project-lite",
-]
-
-[[package]]
-name = "examples"
-version = "0.1.0"
-dependencies = [
- "ansi_term",
- "axum",
- "base64",
- "clap",
- "exitcode",
- "iced",
- "indicatif",
- "itertools",
- "plotters",
- "proc_macros_examples",
- "rand 0.9.0",
- "rstest",
- "rust_decimal",
- "rust_decimal_macros",
- "serde",
- "serde_json",
- "tempfile",
- "tokio",
- "tokio-postgres",
- "ureq",
- "url",
 ]
 
 [[package]]
@@ -2695,6 +2699,13 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "234cf4f4a04dc1f57e24b96cc0cd600cf2af460d4161ac5ecdd0af8e1f3b2a38"
 
 [[package]]
+name = "macros"
+version = "0.1.0"
+dependencies = [
+ "proc_macros_lib",
+]
+
+[[package]]
 name = "malloc_buf"
 version = "0.0.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3539,7 +3550,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "proc_macros_examples"
+name = "proc_macros_lib"
 version = "0.1.0"
 dependencies = [
  "darling",
@@ -4835,9 +4846,9 @@ checksum = "8ecb6da28b8a351d773b68d5825ac39017e680750f980f3a1a85cd8dd28a47c1"
 
 [[package]]
 name = "ureq"
-version = "3.0.5"
+version = "3.0.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b2916852be768844b6e9cbe107358b5bc40a696bd6dc8e036c9f80c731242c9c"
+checksum = "ca2e2dbdf4e95780e5d41804fab88b928a24585721018409eb429b1d29356bde"
 dependencies = [
  "base64",
  "cookie_store",
@@ -5143,6 +5154,18 @@ dependencies = [
  "log",
  "once_cell",
  "pkg-config",
+]
+
+[[package]]
+name = "web"
+version = "0.1.0"
+dependencies = [
+ "axum",
+ "serde",
+ "serde_json",
+ "tokio",
+ "ureq",
+ "url",
 ]
 
 [[package]]

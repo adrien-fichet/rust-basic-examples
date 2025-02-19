@@ -1,5 +1,13 @@
 use std::fmt::Display;
 
+fn main() {
+    let cat = Cat::new("Riki".to_string(), 4)
+        .with_main_color(Color::White)
+        .with_secondary_color(Color::Black)
+        .lazy(false);
+    println!("{}", cat);
+}
+
 #[derive(Default, Debug)]
 enum Color {
     #[default]
@@ -62,12 +70,4 @@ impl Cat {
         self.is_lazy = is_lazy;
         self
     }
-}
-
-fn main() {
-    let cat = Cat::new("Riki".to_string(), 4)
-        .with_main_color(Color::White)
-        .with_secondary_color(Color::Black)
-        .lazy(false);
-    println!("{}", cat);
 }
