@@ -26,10 +26,7 @@ fn httpbin_api() -> Result<(), ureq::Error> {
         &response.get("headers").unwrap().get("Host"),
         &Some(&json!("httpbin.org"))
     );
-    assert_eq!(
-        &response.get("args").unwrap().get("foo"),
-        &Some(&json!("bar"))
-    );
+    assert_eq!(&response.get("args").unwrap().get("foo"), &Some(&json!("bar")));
     Ok(())
 }
 

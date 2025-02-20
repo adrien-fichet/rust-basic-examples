@@ -3,10 +3,7 @@
 use std::fmt::Display;
 
 fn main() {
-    let cat = Cat {
-        name: "Riki",
-        age: 4,
-    };
+    let cat = Cat { name: "Riki", age: 4 };
 
     println!("{}", cat); // using Display
     println!("{:?}", cat); // using Debug

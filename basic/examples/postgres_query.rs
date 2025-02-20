@@ -43,9 +43,7 @@ async fn main() -> Result<(), Error> {
         )
         .await?;
 
-    client
-        .query("INSERT INTO cats (name) VALUES ($1)", &[&"Riki"])
-        .await?;
+    client.query("INSERT INTO cats (name) VALUES ($1)", &[&"Riki"]).await?;
 
     let rows = client.query("SELECT id, name FROM cats", &[]).await?;
     println!(

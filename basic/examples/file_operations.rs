@@ -12,9 +12,7 @@ fn write_and_read_tempfile() -> Result<(), Box<dyn std::error::Error>> {
         .iter()
         .for_each(|line| writeln!(tmp_file, "{}", line).expect("Could not write to temp file"));
 
-    tmp_file
-        .seek(SeekFrom::Start(0))
-        .expect("Could not seek temp file");
+    tmp_file.seek(SeekFrom::Start(0)).expect("Could not seek temp file");
 
     let buf_reader = BufReader::new(tmp_file);
     let mut lines_iter = buf_reader.lines();

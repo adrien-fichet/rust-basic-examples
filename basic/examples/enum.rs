@@ -19,10 +19,7 @@ impl Log for Event {
 }
 
 fn main() {
-    let events = [
-        Event::Click { x: 10, y: 50 },
-        Event::Paste(String::from("Hello")),
-    ];
+    let events = [Event::Click { x: 10, y: 50 }, Event::Paste(String::from("Hello"))];
 
     events.iter().for_each(|event| event.log());
 }

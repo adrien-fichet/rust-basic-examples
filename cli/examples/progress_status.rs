@@ -16,9 +16,7 @@ fn spin_countdown() {
 fn progress_bar() {
     let steps = 20;
     let bar = ProgressBar::new(steps);
-    bar.set_style(
-        ProgressStyle::with_template("[{elapsed_precise}] {bar:20.cyan/blue} {msg}").unwrap(),
-    );
+    bar.set_style(ProgressStyle::with_template("[{elapsed_precise}] {bar:20.cyan/blue} {msg}").unwrap());
 
     for i in 1..=steps {
         sleep(Duration::from_millis(100));

@@ -27,10 +27,8 @@ fn main() {
     let mut rng = rand::rng();
     let data: Vec<_> = (0..11).map(|_| rng.random_range(0..50)).collect();
 
-    ctx.draw_series(
-        AreaSeries::new((0..).zip(data.iter().copied()), 0, RED.mix(0.2)).border_style(RED),
-    )
-    .unwrap();
+    ctx.draw_series(AreaSeries::new((0..).zip(data.iter().copied()), 0, RED.mix(0.2)).border_style(RED))
+        .unwrap();
 
     Command::new("open")
         .arg(image_path)

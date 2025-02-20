@@ -3,10 +3,7 @@
 use ansi_term::{Colour, Style};
 
 fn main() {
-    println!(
-        "The following text is red: {}",
-        Colour::Red.paint("<red text>")
-    );
+    println!("The following text is red: {}", Colour::Red.paint("<red text>"));
 
     println!("{}", Colour::Cyan.underline().paint("Cyan underline"));
 

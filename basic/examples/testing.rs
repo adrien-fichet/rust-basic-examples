@@ -2,9 +2,7 @@
 
 // property-based testing
 // fuzzing
-// fake, mock, seam
-// benchmarks: timeit, criterion
-// profiling
+// fake, mock (wiremock), seam
 // coverage (cargo-tarpaulin?)
 // fixtures
 // async tests
