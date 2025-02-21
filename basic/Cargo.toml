@@ -5,6 +5,7 @@ edition = "2021"
 
 [dependencies]
 base64 = "0.22.1"
+chrono = "0.4.39"
 dotenvy = "0.15.7"
 iced = { version = "0.13.1", features = ["async-std"] }
 itertools = "0.14.0"
