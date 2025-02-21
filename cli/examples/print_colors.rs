@@ -1,23 +1,14 @@
-// https://docs.rs/ansi_term/latest/ansi_term/
-
-use ansi_term::{Colour, Style};
+use colored::{Colorize, CustomColor};
 
 fn main() {
-    println!("The following text is red: {}", Colour::Red.paint("<red text>"));
+    println!("The following text is red: {}", "<red text>".red());
+    println!("{}", "Cyan underline".underline().cyan());
+    println!("{}", "Yellow bold with Purple background".bold().on_purple().yellow());
+    println!("No color");
 
-    println!("{}", Colour::Cyan.underline().paint("Cyan underline"));
+    let style = |s: &str| s.white().on_black().italic();
+    println!("{}", style("With a predefined style"));
 
-    println!(
-        "{}",
-        Colour::Yellow
-            .bold()
-            .on(Colour::Purple)
-            .paint("Yellow bold with Purple background")
-    );
-
-    let style = Style::new().fg(Colour::White).on(Colour::Black).italic();
-    println!("{}", style.paint("With a predefined style"));
-
-    let steel_blue = Colour::RGB(70, 130, 180);
-    println!("{}", steel_blue.paint("Steel blue"));
+    let steel_blue = CustomColor::new(70, 130, 180);
+    println!("{}", "Steel blue".custom_color(steel_blue));
 }
