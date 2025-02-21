@@ -8,6 +8,8 @@ use std::path::Path;
 
 fn main() {
     dotenv().ok(); // read a .env file and inject its vars into the current env
+    assert_ne!(env::var("HOME").unwrap(), "/"); // but do not override already set env variables
+    assert_ne!(env::var("FOO").unwrap(), "buz"); // and take the first value found
 
     env_constants();
     println!("---");
