@@ -1,6 +1,6 @@
+use iced::Subscription;
 use iced::alignment::{Horizontal, Vertical};
 use iced::widget::{button, column, row, text};
-use iced::Subscription;
 use iced::{Element, Length, Size};
 use std::time::Duration;
 
@@ -104,15 +104,17 @@ fn view(state: &State) -> Element<Message> {
         reset_button = reset_button.on_press(Message::Reset);
     }
 
-    row![column![
-        text(format!("{}ms", state.chrono.as_millis()))
-            .size(60)
-            .width(Length::Fill)
-            .center(),
-        row![start_button, pause_button, resume_button, reset_button,].spacing(10)
+    row![
+        column![
+            text(format!("{}ms", state.chrono.as_millis()))
+                .size(60)
+                .width(Length::Fill)
+                .center(),
+            row![start_button, pause_button, resume_button, reset_button,].spacing(10)
+        ]
+        .spacing(20)
+        .align_x(Horizontal::Center)
     ]
-    .spacing(20)
-    .align_x(Horizontal::Center)]
     .align_y(Vertical::Center)
     .height(Length::Fill)
     .into()

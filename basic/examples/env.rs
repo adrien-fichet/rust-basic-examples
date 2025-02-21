@@ -3,7 +3,7 @@
 
 use dotenvy::dotenv;
 use std::env;
-use std::env::{consts, VarError};
+use std::env::{VarError, consts};
 use std::path::Path;
 
 fn main() {
@@ -48,10 +48,10 @@ fn read_update_delete_env_var() {
         }
     }
 
-    env::set_var(key, "bar");
+    unsafe { env::set_var(key, "bar") };
     println!("{} has now the value \"{}\"", key, env::var(key).unwrap());
 
-    env::remove_var(key);
+    unsafe { env::remove_var(key) };
     match env::var(key) {
         Err(VarError::NotPresent) => println!("{} was removed from the current env", key),
         _ => println!("{} was not removed from the current env", key),

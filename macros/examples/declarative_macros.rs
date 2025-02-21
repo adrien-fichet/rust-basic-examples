@@ -12,7 +12,7 @@ macro_rules! print_args {
 fn main() {
     print_args!();
     print_args!(1);
-    print_args!(1, 2, 3);
+    print_args!(2, 3);
 
     let cat = Cat {
         name: "Riki".to_string(),
