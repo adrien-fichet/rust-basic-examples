@@ -1,3 +1,6 @@
 [workspace]
 members = ["basic", "cli", "macros", "patterns", "proc_macros_lib", "web"]
 resolver = "2"
+
+[workspace.dependencies]
+tempfile = "3.16.0"
