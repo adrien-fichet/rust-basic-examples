@@ -1,7 +1,7 @@
 /*
 Setup a local Postgres on k8s (k3d cluster):
 
-k3d cluster create demo --image rancher/k3s:v1.32.0-k3s1 -p "5432:30000@agent:0" --agents 1
+k3d cluster create demo --image rancher/k3s:v1.32.1-k3s1 -p "5432:30000@agent:0" --agents 1
 export POSTGRES_PASSWORD=xxx
 helm install postgresql -n postgresql --create-namespace \
   --set primary.service.nodePorts.postgresql=30000 \

@@ -42,9 +42,9 @@ fn read_update_delete_env_var() {
     let env_var = env::var(key);
     match env_var {
         Ok(value) => println!("{} was found in the current env with the value \"{}\"", key, value),
-        Err(VarError::NotPresent) => println!("{} was not found in the current env", key),
+        Err(VarError::NotPresent) => eprintln!("{} was not found in the current env", key),
         Err(VarError::NotUnicode(_)) => {
-            println!("{} was found in the current env but is not a valid unicode string", key)
+            eprintln!("{} was found in the current env but is not a valid unicode string", key)
         }
     }
 
@@ -54,6 +54,6 @@ fn read_update_delete_env_var() {
     unsafe { env::remove_var(key) };
     match env::var(key) {
         Err(VarError::NotPresent) => println!("{} was removed from the current env", key),
-        _ => println!("{} was not removed from the current env", key),
+        _ => eprintln!("{} was not removed from the current env", key),
     }
 }

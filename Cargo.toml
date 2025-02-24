@@ -4,3 +4,4 @@ resolver = "2"
 
 [workspace.dependencies]
 tempfile = "3.16.0"
+anyhow = "1.0.96"

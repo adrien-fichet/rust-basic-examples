@@ -1,6 +1,6 @@
+use anyhow::Result;
 use assert_cmd::prelude::*;
 use escargot::CargoBuild;
-use std::error::Error;
 use std::io::Write;
 use std::process::Command;
 use tempfile::NamedTempFile;
@@ -18,7 +18,7 @@ fn test_false() {
 }
 
 #[test]
-fn test_grep_pattern_found() -> Result<(), Box<dyn Error>> {
+fn test_grep_pattern_found() -> Result<()> {
     let mut tmp_file = NamedTempFile::new()?;
     writeln!(tmp_file, "Hello, world!")?;
     let cli_app = CargoBuild::new().example("cli_app").run()?;
@@ -34,7 +34,7 @@ fn test_grep_pattern_found() -> Result<(), Box<dyn Error>> {
 }
 
 #[test]
-fn test_grep_pattern_not_found() -> Result<(), Box<dyn Error>> {
+fn test_grep_pattern_not_found() -> Result<()> {
     let mut tmp_file = NamedTempFile::new()?;
     writeln!(tmp_file, "Hello, world!")?;
     let cli_app = CargoBuild::new().example("cli_app").run()?;
@@ -50,7 +50,7 @@ fn test_grep_pattern_not_found() -> Result<(), Box<dyn Error>> {
 }
 
 #[test]
-fn test_grep_file_not_found() -> Result<(), Box<dyn Error>> {
+fn test_grep_file_not_found() -> Result<()> {
     let cli_app = CargoBuild::new().example("cli_app").run()?;
     cli_app
         .command()
@@ -76,7 +76,7 @@ fn test_echo_no_args() {
 }
 
 #[test]
-fn test_echo_with_args() -> Result<(), Box<dyn Error>> {
+fn test_echo_with_args() -> Result<()> {
     let cli_app = CargoBuild::new().example("cli_app").run()?;
     let args_values = [
         ["Hello", "there"],
@@ -95,5 +95,15 @@ fn test_echo_with_args() -> Result<(), Box<dyn Error>> {
             .success()
             .stdout(expected);
     }
+    Ok(())
+}
+
+#[test]
+fn test_echo_impl_differences() -> Result<()> {
+    let cli_app = CargoBuild::new().example("cli_app").run()?;
+    let args = ["Hello there", "-n"];
+    let expected = Command::new("echo").args(args).output()?.stdout;
+    // the -n option only works when specified at the start in the original echo command
+    assert_ne!(cli_app.command().arg("echo").args(args).output()?.stdout, expected);
     Ok(())
 }

@@ -1,5 +1,5 @@
+use anyhow::Result;
 use clap::{Parser, Subcommand};
-use std::error::Error;
 use std::io::prelude::*;
 use std::{io::BufReader, path::PathBuf};
 
@@ -29,13 +29,14 @@ enum Commands {
     /// Write arguments to the standard output
     Echo {
         text: Vec<String>,
+
         #[clap(short = 'n')]
         /// Do not print the trailing newline character
         omit_newline: bool,
     },
 }
 
-fn main() -> Result<(), Box<dyn Error>> {
+fn main() -> Result<()> {
     let cli = Cli::parse();
 
     let status = match &cli.command {
