@@ -2,6 +2,7 @@ use assert_cmd::prelude::*;
 use escargot::CargoBuild;
 use std::error::Error;
 use std::io::Write;
+use std::process::Command;
 use tempfile::NamedTempFile;
 
 #[test]
@@ -59,5 +60,40 @@ fn test_grep_file_not_found() -> Result<(), Box<dyn Error>> {
         .assert()
         .failure()
         .code(exitcode::IOERR);
+    Ok(())
+}
+
+#[test]
+fn test_hello() {
+    let cli_app = CargoBuild::new().example("cli_app").run().unwrap();
+    cli_app.command().arg("hello").assert().success().stdout("Hello!\n");
+}
+
+#[test]
+fn test_echo_no_args() {
+    let cli_app = CargoBuild::new().example("cli_app").run().unwrap();
+    cli_app.command().arg("echo").assert().success().stdout("\n");
+}
+
+#[test]
+fn test_echo_with_args() -> Result<(), Box<dyn Error>> {
+    let cli_app = CargoBuild::new().example("cli_app").run()?;
+    let args_values = [
+        ["Hello", "there"],
+        ["Hello     ", " there"],
+        ["Hello there", ""],
+        ["Hello -n  ", "there"],
+    ];
+
+    for args in args_values {
+        let expected = Command::new("echo").args(args).output()?.stdout;
+        cli_app
+            .command()
+            .arg("echo")
+            .args(args)
+            .assert()
+            .success()
+            .stdout(expected);
+    }
     Ok(())
 }

@@ -7,6 +7,7 @@
 // fixtures
 // async tests
 // setup/teardown
+// pretty assertions
 
 #[allow(unused_imports)]
 use rstest::{fixture, rstest};
