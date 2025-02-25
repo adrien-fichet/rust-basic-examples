@@ -1,4 +1,4 @@
-// pretty_env_logger
+// cargo-tarpaulin
 
 fn main() {
     todo!();

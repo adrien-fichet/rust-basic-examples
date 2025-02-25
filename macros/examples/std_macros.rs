@@ -8,7 +8,6 @@ fn main() {
     one::two::three::module_path();
 
     assertions();
-    env();
     panics();
 }
 
@@ -22,14 +21,6 @@ fn assertions() {
     debug_assert!(msg.contains("H"));
     debug_assert_eq!(msg, "Hello");
     debug_assert_ne!(msg, "Bye");
-}
-
-fn env() {
-    println!("The shell at compile time is: {}", env!("SHELL")); // will panic if the variable is not defined
-    match option_env!("FOO") {
-        Some(value) => println!("The value of FOO at compile time is: {}", value),
-        None => println!("FOO was not defined at compile time"),
-    }
 }
 
 fn panics() {

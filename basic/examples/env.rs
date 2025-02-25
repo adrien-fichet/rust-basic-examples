@@ -12,6 +12,7 @@ fn main() {
     assert_ne!(env::var("FOO").unwrap(), "buz"); // and take the first value found
 
     env_constants();
+    env_macros();
     println!("---");
     read_update_delete_env_var();
     println!("---");
@@ -35,6 +36,15 @@ fn env_constants() {
     println!("ARCH: {}", consts::ARCH);
     println!("FAMILY: {}", consts::FAMILY);
     println!("OS: {}", consts::OS);
+}
+
+fn env_macros() {
+    println!("The shell at compile time is: {}", env!("SHELL")); // will panic if the variable is not defined
+    let foo_env = option_env!("FOO");
+    match foo_env {
+        Some(value) => println!("The value of FOO at compile time is: {}", value),
+        None => println!("FOO was not defined at compile time"),
+    }
 }
 
 fn read_update_delete_env_var() {

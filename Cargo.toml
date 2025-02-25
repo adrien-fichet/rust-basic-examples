@@ -1,5 +1,5 @@
 [workspace]
-members = ["basic", "cli", "macros", "patterns", "proc_macros_lib", "web"]
+members = ["basic", "cli", "macros", "patterns", "proc_macros_lib", "testing", "web"]
 resolver = "2"
 
 [workspace.dependencies]

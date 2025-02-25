@@ -1,13 +1,4 @@
-// Usage: cargo test --example testing -- --test-threads=5
-
-// property-based testing
-// fuzzing
-// fake, mock (wiremock), seam
-// coverage (cargo-tarpaulin?)
-// fixtures
-// async tests
-// setup/teardown
-// pretty assertions
+// Usage: cargo test --example fixture -- --test-threads=5
 
 #[allow(unused_imports)]
 use rstest::{fixture, rstest};

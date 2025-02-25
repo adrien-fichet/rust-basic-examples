@@ -1,4 +1,5 @@
 // https://doc.rust-lang.org/std/iter/trait.Iterator.html
+// todo: itertools usage
 
 fn next_count_last() {
     let mut iter = 1..=3;

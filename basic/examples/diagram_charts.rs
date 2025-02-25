@@ -3,6 +3,9 @@ use rand::prelude::*;
 use std::fs::OpenOptions;
 use std::process::Command;
 
+// todo: other kinds of diagrams / charts
+// todo: export to Mermaid format?
+
 fn main() {
     let image_path = "/tmp/area-chart.png";
     OpenOptions::new()
