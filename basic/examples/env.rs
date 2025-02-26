@@ -39,7 +39,7 @@ fn env_constants() {
 }
 
 fn env_macros() {
-    println!("The shell at compile time is: {}", env!("SHELL")); // will panic if the variable is not defined
+    println!("PWD at compile time is: {}", env!("PWD")); // will panic if the variable is not defined
     let foo_env = option_env!("FOO");
     match foo_env {
         Some(value) => println!("The value of FOO at compile time is: {}", value),
