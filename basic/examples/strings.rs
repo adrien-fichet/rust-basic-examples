@@ -33,7 +33,7 @@ fn search_and_replace(s: &str) {
 
     let s2 = "the dog and the fox";
     assert_eq!(s2.replace("the", "that"), "that dog and that fox"); // replace all matches
-    assert_eq!(s2.replacen("the", "that", 1), "that dog and the fox"); // replace only the first occurence
+    assert_eq!(s2.replacen("the", "that", 1), "that dog and the fox"); // replace only the first occurrence
 }
 
 fn trim_strip() {
