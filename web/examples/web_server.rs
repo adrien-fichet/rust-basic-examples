@@ -8,6 +8,7 @@ todo:
 - error handling
 - middleware
 - shared state
+- templating (https://docs.rs/minijinja/latest/minijinja/)
 */
 
 use axum::{Router, response::Json, routing::get};
