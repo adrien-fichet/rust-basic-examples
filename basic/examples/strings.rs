@@ -8,6 +8,7 @@ fn main() {
     convert();
     chars(&s);
     split(&s);
+    split_every_n_chars(&s, 3);
     trim_strip();
     transforms();
 }
@@ -22,6 +23,17 @@ fn split(s: &str) {
     assert_eq!("mount=type=bind".rsplit_once("="), Some(("mount=type", "bind")));
 
     assert_eq!(s.split_whitespace().next(), Some("The"));
+}
+
+fn split_every_n_chars(s: &str, n: usize) {
+    let mut res = String::new();
+    for (i, c) in s.chars().enumerate() {
+        res.push(c);
+        if (i + 1) % n == 0 {
+            res.push('\n');
+        }
+    }
+    assert_eq!(res[..=18], ["The", " qu", "ick", " br", "own"].join("\n"));
 }
 
 fn search_and_replace(s: &str) {
