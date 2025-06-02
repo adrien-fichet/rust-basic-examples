@@ -1,5 +1,5 @@
 [workspace]
-members = ["basic", "cli", "dioxus", "docker", "macros", "patterns", "proc_macros_lib", "testing", "web"]
+members = [ "ai","basic", "cli", "dioxus", "docker", "macros", "patterns", "proc_macros_lib", "testing", "web"]
 resolver = "2"
 
 [workspace.dependencies]
