@@ -83,7 +83,7 @@ fn update(state: &mut State, message: Message) {
     }
 }
 
-fn view(state: &State) -> Element<Message> {
+fn view(state: &State) -> Element<'_, Message> {
     let mut start_button = button("Start");
     if state.paused && state.started_at.is_none() {
         start_button = start_button.on_press(Message::Start);
