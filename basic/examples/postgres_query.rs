@@ -30,7 +30,7 @@ async fn main() -> Result<(), Error> {
 
     tokio::spawn(async move {
         if let Err(e) = connection.await {
-            eprintln!("Postgres connection error: {}", e);
+            eprintln!("Postgres connection error: {e}");
         }
     });
 
@@ -52,14 +52,14 @@ async fn main() -> Result<(), Error> {
             .map(|row| {
                 let id: i32 = row.get(0);
                 let name: &str = row.get(1);
-                format!("{}: {}", id, name)
+                format!("{id}: {name}")
             })
             .format("\n")
     );
     println!("Got {} cats", rows.len());
 
     let cat_name: &str = rows[0].get(1);
-    println!("First cat name is {}", cat_name);
+    println!("First cat name is {cat_name}");
 
     todo!("Connection over TLS");
     //Ok(())

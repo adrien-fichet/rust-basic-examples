@@ -28,7 +28,7 @@ fn main() {
     println!("---");
 
     for (key, value) in env::vars().filter(|(key, _)| key.starts_with("CARGO") || key.starts_with("RUST")) {
-        println!("{}={}", key, value);
+        println!("{key}={value}");
     }
 }
 
@@ -42,7 +42,7 @@ fn env_macros() {
     println!("PWD at compile time is: {}", env!("PWD")); // will panic if the variable is not defined
     let foo_env = option_env!("FOO");
     match foo_env {
-        Some(value) => println!("The value of FOO at compile time is: {}", value),
+        Some(value) => println!("The value of FOO at compile time is: {value}"),
         None => println!("FOO was not defined at compile time"),
     }
 }
@@ -51,19 +51,19 @@ fn read_update_delete_env_var() {
     let key = "FOO";
     let env_var = env::var(key);
     match env_var {
-        Ok(value) => println!("{} was found in the current env with the value \"{}\"", key, value),
-        Err(VarError::NotPresent) => eprintln!("{} was not found in the current env", key),
+        Ok(value) => println!("{key} was found in the current env with the value \"{value}\""),
+        Err(VarError::NotPresent) => eprintln!("{key} was not found in the current env"),
         Err(VarError::NotUnicode(_)) => {
-            eprintln!("{} was found in the current env but is not a valid unicode string", key)
+            eprintln!("{key} was found in the current env but is not a valid unicode string")
         }
     }
 
     unsafe { env::set_var(key, "bar") };
-    println!("{} has now the value \"{}\"", key, env::var(key).unwrap());
+    println!("{key} has now the value \"{}\"", env::var(key).unwrap());
 
     unsafe { env::remove_var(key) };
     match env::var(key) {
-        Err(VarError::NotPresent) => println!("{} was removed from the current env", key),
-        _ => eprintln!("{} was not removed from the current env", key),
+        Err(VarError::NotPresent) => println!("{key} was removed from the current env"),
+        _ => eprintln!("{key} was not removed from the current env"),
     }
 }

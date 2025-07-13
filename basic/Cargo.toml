@@ -10,6 +10,7 @@ chrono = "0.4.39"
 dotenvy = "0.15.7"
 humantime = "2.1.0"
 iced = { version = "0.13.1", features = ["async-std"] }
+indoc = { workspace = true }
 itertools = "0.14.0"
 log = "0.4.27"
 plotters = "0.3.7"

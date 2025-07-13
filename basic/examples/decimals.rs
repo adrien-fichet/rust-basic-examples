@@ -25,7 +25,7 @@ impl Currency {
 fn main() {
     let potato = Currency::Euro(dec!(42.58));
     let carrot = Currency::Euro(dec!(57.42));
-    println!("{:?}, {:?}", potato, carrot);
+    println!("{potato:?}, {carrot:?}");
     assert_eq!(potato.value() + carrot.value(), dec!(100.00));
 
     let tax = dec!(0.1);

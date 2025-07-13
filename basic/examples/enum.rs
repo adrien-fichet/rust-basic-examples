@@ -13,9 +13,9 @@ impl Log for Event {
     fn log(&self) {
         match self {
             Event::Click { x, y } => {
-                println!("Click at ({}, {})", x, y);
+                println!("Click at ({x}, {y})");
             }
-            Event::Paste(s) => println!("Pasted \"{}\"", s),
+            Event::Paste(s) => println!("Pasted \"{s}\""),
         }
     }
 }
@@ -27,6 +27,6 @@ fn main() {
 
     let event = Event::Click { x: 10, y: 50 };
     if let Event::Click { x, y } = event {
-        println!("Click at ({}, {})", x, y);
+        println!("Click at ({x}, {y})");
     }
 }

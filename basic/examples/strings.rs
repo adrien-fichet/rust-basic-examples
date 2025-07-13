@@ -11,6 +11,7 @@ fn main() {
     split_every_n_chars(&s, 3);
     trim_strip();
     transforms();
+    multiline_strings();
 }
 
 fn split(s: &str) {
@@ -94,4 +95,42 @@ fn capitalize_ascii(s: &str) -> String {
         first.make_ascii_uppercase();
     }
     s
+}
+
+fn multiline_strings() {
+    let s = "\
+        line 1 \
+        line 2 \
+        line 3";
+    assert_eq!(s, "line 1 line 2 line 3");
+
+    let name = "Riki";
+    let s = format!(
+        "\
+        line 1\n\
+        {name}\n\
+        line 3"
+    );
+    assert_eq!(s, "line 1\nRiki\nline 3");
+
+    let s = format!(
+        r#"hello {name}
+line 2
+My name is {name}"#
+    );
+    assert_eq!(s, "hello Riki\nline 2\nMy name is Riki");
+
+    let s = indoc::indoc! {"
+        line 1
+        line 2
+        line 3
+    "};
+    assert_eq!(s, "line 1\nline 2\nline 3\n");
+
+    let s = indoc::formatdoc! {"
+        line 1
+        My name is {name}
+        line 3
+    "};
+    assert_eq!(s, "line 1\nMy name is Riki\nline 3\n");
 }

@@ -5,7 +5,7 @@ fn main() {
         .with_main_color(Color::White)
         .with_secondary_color(Color::Black)
         .lazy(false);
-    println!("{}", cat);
+    println!("{cat}");
 }
 
 #[derive(Default, Debug)]

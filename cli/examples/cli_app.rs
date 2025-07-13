@@ -53,7 +53,7 @@ fn grep(pattern: &String, path: &PathBuf) -> exitcode::ExitCode {
     let file = match std::fs::File::open(path) {
         Ok(file) => file,
         Err(err) => {
-            eprintln!("Could not open file: {}", err);
+            eprintln!("Could not open file: {err}");
             return exitcode::IOERR;
         }
     };
@@ -64,7 +64,7 @@ fn grep(pattern: &String, path: &PathBuf) -> exitcode::ExitCode {
         let line = match line {
             Ok(line) => line,
             Err(err) => {
-                eprintln!("Could not read line: {}", err);
+                eprintln!("Could not read line: {err}");
                 return exitcode::IOERR;
             }
         };

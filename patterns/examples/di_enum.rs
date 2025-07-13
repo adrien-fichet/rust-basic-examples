@@ -72,7 +72,7 @@ impl DatabaseConnection for MySQL {
 
 impl DatabaseQuery for MySQL {
     fn query(&self, query: &str) -> Result<String, String> {
-        println!("Querying MySQL: {}", query);
+        println!("Querying MySQL: {query}");
         Ok("Got 12 MySQL users".to_string())
     }
 }
@@ -90,7 +90,7 @@ impl DatabaseConnection for PostgreSQL {
 
 impl DatabaseQuery for PostgreSQL {
     fn query(&self, query: &str) -> Result<String, String> {
-        println!("Querying PostgreSQL: {}", query);
+        println!("Querying PostgreSQL: {query}");
         Ok("Got 43 PostgreSQL users".to_string())
     }
 }

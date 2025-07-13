@@ -20,7 +20,7 @@ fn progress_bar() {
 
     for i in 1..=steps {
         sleep(Duration::from_millis(100));
-        bar.set_message(format!("Finished task #{}", i));
+        bar.set_message(format!("Finished task #{i}"));
         bar.inc(1);
     }
 
