@@ -1,0 +1,8 @@
+[profile.default]
+retries = 1
+fail-fast = true
+test-threads = 1
+
+[profile.default.junit]
+path = "junit.xml" # will be saved to target/nextest/default/junit.xml
+store-success-output = true

@@ -12,16 +12,6 @@ fn main() {
         age: cat_age,
     } = cat; // new variable names
     println!("{cat_name} is {cat_age} years old");
-
-    let cat = Cat {
-        name: "Riki".to_string(),
-        age: 4,
-    };
-    let cat2 = Cat {
-        name: "Rikou".to_string(),
-        ..cat.clone()
-    };
-    println!("{cat2:#?}");
 }
 
 #[derive(Clone, Debug)]

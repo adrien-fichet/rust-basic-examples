@@ -16,3 +16,4 @@ pretty_assertions = "1.4.1"
 tempfile = { workspace = true }
 indoc = { workspace = true }
 run_script = "0.11.0"
+clap_complete = "4.5.55"
