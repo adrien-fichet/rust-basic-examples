@@ -1,10 +1,20 @@
 // append to file
 // create tempdir
 
+use anyhow::Result;
+use std::fs::File;
 use std::io::prelude::*;
 use std::io::{BufReader, Seek, SeekFrom, Write};
+use std::process::Command;
 
-fn write_and_read_tempfile() -> Result<(), Box<dyn std::error::Error>> {
+fn main() -> Result<()> {
+    write_and_read_tempfile()?;
+    create_empty_file()?;
+    time_since_last_modified()?;
+    Ok(())
+}
+
+fn write_and_read_tempfile() -> Result<()> {
     let mut tmp_file = tempfile::tempfile().expect("Could not create temp file");
     println!("{tmp_file:?}");
 
@@ -21,7 +31,18 @@ fn write_and_read_tempfile() -> Result<(), Box<dyn std::error::Error>> {
     Ok(())
 }
 
-fn main() -> Result<(), Box<dyn std::error::Error>> {
-    write_and_read_tempfile()?;
+fn create_empty_file() -> Result<()> {
+    File::create("/tmp/empty_file").expect("Could not create empty file");
+    assert!(Command::new("ls").arg("/tmp/empty_file").status()?.success());
+    Ok(())
+}
+
+fn time_since_last_modified() -> Result<()> {
+    let file = File::open("/etc/hosts")?;
+    let metadata = file.metadata()?;
+    let last_modified = metadata.modified()?;
+    let duration_since_last_modified = last_modified.elapsed()? / 3600 / 24;
+    println!("Last modified: {last_modified:?}");
+    println!("Duration since last modified: {duration_since_last_modified:?} days");
     Ok(())
 }
