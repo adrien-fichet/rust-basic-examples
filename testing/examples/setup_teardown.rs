@@ -4,13 +4,16 @@
 use std::sync::OnceLock;
 use test_context::{TestContext, test_context};
 
+#[allow(dead_code)]
 static BEFORE_ALL: OnceLock<String> = OnceLock::new();
 
+#[allow(dead_code)]
 fn before_all() -> String {
     println!("before all");
     "John".to_string()
 }
 
+#[allow(dead_code)]
 #[derive(Debug, Eq, PartialEq)]
 enum Job {
     Firefighter,

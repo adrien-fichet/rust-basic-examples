@@ -7,6 +7,7 @@ use tempfile::NamedTempFile;
 fn main() -> Result<()> {
     wait_for_child()?;
     script_with_source()?;
+    realtime_and_output_capture()?;
     Ok(())
 }
 
@@ -46,5 +47,15 @@ fn script_with_source() -> Result<()> {
     println!("exit code: {code}");
     println!("stdout: {output}");
     println!("stderr: {error}");
+    Ok(())
+}
+
+fn realtime_and_output_capture() -> Result<()> {
+    let out = Command::new("bash")
+        .args(["-c", "for i in $(seq 1 3); do echo $i; sleep 1; done"])
+        .spawn()?
+        .wait_with_output()?;
+    dbg!(&out);
+
     Ok(())
 }

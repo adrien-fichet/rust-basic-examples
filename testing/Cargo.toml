@@ -6,3 +6,4 @@ edition = "2024"
 [dependencies]
 rstest = "0.25.0"
 test-context = "0.4.1"
+anyhow = { workspace = true }

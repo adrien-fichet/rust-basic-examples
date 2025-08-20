@@ -12,6 +12,7 @@ fn main() {
     trim_strip();
     transforms();
     multiline_strings();
+    bool_to_string();
 }
 
 fn split(s: &str) {
@@ -133,4 +134,12 @@ My name is {name}"#
         line 3
     "};
     assert_eq!(s, "line 1\nMy name is Riki\nline 3\n");
+}
+
+fn bool_to_string() {
+    assert_eq!(true.to_string(), "true");
+    assert_eq!(false.to_string(), "false");
+
+    let a = true;
+    assert_eq!(format!("a={a}"), "a=true");
 }
